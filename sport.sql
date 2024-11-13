@@ -20,31 +20,31 @@ drzava varchar(30),
 liga int
 );
 
-create table utakmica(
+create table utakmice(
 sifra int not null primary key identity(1,1),
 datum datetime not null,
 vrijeme datetime not null,
 lokacija varchar(30) not null,
 stadion varchar(30) not null,
-domaci_klub varchar(30) not null,
-gostujuci_klub varchar(30) not null 
+domaci_klub varchar(30) not null references klubovi(naziv),
+gostujuci_klub varchar(30) not null references klubovi(naziv)
 );
 
-create table igrac(
+create table igraci(
 sifra int not null primary key identity(1,1),
 ime varchar(30) not null,
 prezime varchar(30) not null,
 datum_rodenja datetime not null,
 pozicija varchar(30) not null,
 broj_dresa int not null,
-klub varchar(30) not null references klubovi(sifra)
+klub varchar(30) not null references klubovi(naziv)
 );
 
-create table trener(
+create table treneri(
 sifra int not null primary key identity(1,1),
 ime varchar(30) not null,
 prezime varchar(30) not null,
-klub varchar(30) not null references klubovi(sifra),
+klub varchar(30) not null references klubovi(naziv),
 nacionalnost varchar(30) not null,
 iskustvo bit not null
 );
