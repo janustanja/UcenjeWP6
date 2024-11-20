@@ -19,7 +19,7 @@ sifra int not null primary key identity(1,1),
 ime varchar(30) not null,
 prezime varchar(30) not null,
 adresa varchar(100) not null,
-iban varchar(30) not null
+iban varchar(30) 
 );
 
 create table dobavljac (
