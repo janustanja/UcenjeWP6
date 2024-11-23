@@ -14,7 +14,7 @@ sifra int not null primary key identity(1,1),
 ime varchar(50) not null,
 prezime varchar(50) not null,
 datumrodenja datetime not null,
-placa int not null,
+placa decimal(18,2) not null,
 invalid bit not null
 );
 
@@ -33,10 +33,10 @@ values
 ;
 insert into slike (zaposlenik, rednibroj, putanja)
 values
-(1, 1, 'C:\Users\Korisnik\Desktop\WEB PROGRAMIRANJE\UcenjeWP6Q\slika1'),
-(2, 2, 'C:\Users\Korisnik\Desktop\WEB PROGRAMIRANJE\UcenjeWP6Q\slika2'),
-(3, 3, 'C:\Users\Korisnik\Desktop\WEB PROGRAMIRANJE\UcenjeWP6Q\slika3'),
-(1, 4, 'C:\Users\Korisnik\Desktop\WEB PROGRAMIRANJE\UcenjeWP6Q\slika4'),
-(2, 5, 'C:\Users\Korisnik\Desktop\WEB PROGRAMIRANJE\UcenjeWP6Q\slika5'),
-(3, 6, 'C:\Users\Korisnik\Desktop\WEB PROGRAMIRANJE\UcenjeWP6Q\slika6');
+(1, 1, 'UcenjeWP6Q\slika1.jpg'),
+(2, 2, 'UcenjeWP6Q\slika2.jpg'),
+(3, 3, 'UcenjeWP6Q\slika3.jpg'),
+(1, 4, 'UcenjeWP6Q\slika4.jpg'),
+(2, 5, 'UcenjeWP6Q\slika5.png'),
+(3, 6, 'UcenjeWP6Q\slika6.jpg');
 
