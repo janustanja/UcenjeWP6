@@ -37,7 +37,7 @@ marka varchar(30) not null,
 godproizvodnje int not null,
 prijedenikm int not null,
 cijena decimal(18,2) not null,
-kupac int not null references kupac(sifra)
+kupac int not null references kupci(sifra)
 );
 insert into vrstevozila (naziv)
 values 
