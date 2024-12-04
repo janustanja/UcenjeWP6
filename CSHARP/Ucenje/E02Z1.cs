@@ -16,7 +16,6 @@ namespace Ucenje
 
             Console.Write("Unesi ime: ");
             string ime = Console.ReadLine();
-
             int i;
             Console.WriteLine("Upiši broj godina: ");
             i = int.Parse(Console.ReadLine());
