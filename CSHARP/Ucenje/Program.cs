@@ -1,6 +1,8 @@
 ﻿using Ucenje;
 
-E01UlazIzlaz.Izvedi();
+//E01UlazIzlaz.Izvedi();
+//E02VarijableTipoviPodataka.Izvedi();
+E02Z1.Izvedi();
 
 
 
