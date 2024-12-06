@@ -20,7 +20,7 @@ namespace Ucenje
             {
                 Console.WriteLine("Neparan.");
             }
-            Console.WriteLine(broj%2 == 0 ? "Paran!!!" : "Neparan!!!");
+            Console.WriteLine(broj%2 == 0 ? "Paran!" : "Neparan!");
         }
     }
 }
