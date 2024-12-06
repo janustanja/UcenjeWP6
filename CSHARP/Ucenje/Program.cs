@@ -2,7 +2,9 @@
 
 using Ucenje;
 
-E04UvjetnoGrananjeIf.Izvedi();
+E04Z1.Izvedi();
+
+//E04UvjetnoGrananjeIf.Izvedi();
 
 //E03Operatori.Izvedi();
 
