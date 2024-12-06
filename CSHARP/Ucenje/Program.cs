@@ -2,7 +2,8 @@
 
 using Ucenje;
 
-E04Z1.Izvedi();
+E05UvjenoGrananjeSwitch.Izvedi();
+//E04Z1.Izvedi();
 
 //E04UvjetnoGrananjeIf.Izvedi();
 
