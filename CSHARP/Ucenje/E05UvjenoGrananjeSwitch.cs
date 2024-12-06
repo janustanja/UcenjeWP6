@@ -26,7 +26,7 @@ namespace Ucenje
                     break;
             }
 
-            char znak = 's';
+            char znak = '@';
             Console.WriteLine(znak);
             Console.WriteLine((int)znak);
         }
