@@ -20,15 +20,19 @@ namespace Ucenje
 
             if (broj1 < broj2 && broj1 < broj3)
             {
-                Console.WriteLine(broj1);
+                Console.WriteLine("Najmanji navedeni broj je {0}.", broj1);
             }
             else if (broj2 < broj1 && broj2 < broj3) 
             {
-                Console.WriteLine(broj2);
+                Console.WriteLine("Najmanji navedeni broj je {0}.", broj2);
             }
+            else if (broj3 < broj1 && broj3 < broj2)
+            {
+                Console.WriteLine("Najmanji navedeni broj je {0}.", broj3);
+            }    
             else
             {
-                Console.WriteLine("Greška.");
+                Console.WriteLine("Jednaki brojevi.");
             }
         }
     }
