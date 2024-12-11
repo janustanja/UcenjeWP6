@@ -25,12 +25,36 @@ namespace Ucenje
 
             for (int i = 0; i < 6; i++)
             {
-                Console.WriteLine(znakoviGrad[i]);
+                Console.Write(znakoviGrad[i]);
             }
+            Console.WriteLine();
             for (int i = 0; i<grad.Length; i++)
             {
-                Console.WriteLine(grad[i]);
+                Console.Write(grad[i]);
             }
+            Console.WriteLine();
+
+            foreach (char znak in znakoviGrad)
+            {
+                Console.Write(znak);
+            }
+            Console.WriteLine();
+            foreach (char c in grad)
+            {
+                Console.Write(c);
+            }
+            Console.WriteLine();
+
+            for (int i =grad.Length-1; i>=0; i--)
+            {
+                Console.Write(grad[i]);
+            }
+
+
+
+
+
+
         }
     }
 }
