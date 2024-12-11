@@ -55,7 +55,7 @@ namespace Ucenje
             int sum = 0;
             for(int i = 1; i <= 100; i++)
             {
-                sum += i; //postojećoj sumi dodajem vrijednost i
+                sum += i; //postojećoj sumi dodajem vrijednost i 
             }
             Console.WriteLine(sum);
             int x = 100;
