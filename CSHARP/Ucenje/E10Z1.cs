@@ -30,6 +30,7 @@ namespace Ucenje
             }
             else
             {
+                //napisi i u ovom slucaju
                 Console.WriteLine("Neparno");
 
             }
