@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace Ucenje
 {
+
+    // Program od korisnika traži unos broj godina koje ima korisnik
+    // Program ispisuje da li je korisnik punoljetna osoba ili ne
+
+
+    // dodatno: ako je unos ispod nula godine ili iznad 112 godina ipisasti GREŠKA
     internal class E04Z1
     {
         public static void Izvedi()
         {
-            Console.WriteLine("Unesite broj godina: ");
+            //Console.WriteLine("Z1");
+            Console.Write("Unesite godine: ");
             int godine = int.Parse(Console.ReadLine());
-            if (godine >= 18 && godine <=112) 
+            if (godine >= 18)
             {
-                Console.WriteLine("Punoljetni ste!");
+                Console.WriteLine("Punoljetan");
+
             }
-            else if (godine<18 && godine >=0)
+            else
             {
-                Console.WriteLine("Maloljetni ste.");
-            }
-            else if (godine < 0)
-            {
-                Console.WriteLine("Greška.");
-            }
-            else if (godine >112)
-            {
-                Console.WriteLine("Greška.");
+                Console.WriteLine("Maloljetan");
             }
         }
     }

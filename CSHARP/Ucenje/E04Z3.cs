@@ -6,34 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ucenje
 {
+
+    // Program od korisnika traži unos dva cijela broja
+    // Program ispisuje manji
+
+    // isti zadatak ali za tri unesena broja ispisati najmanji
+
     internal class E04Z3
     {
-        public static void Izvedi()
-        {
-            //Console.WriteLine("E04");
-            Console.WriteLine("Unesi 1. cijeli broj:");
-            int broj1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Unesi 2. cijeli broj:");
-            int broj2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Unesi 3. cijeli broj:");
-            int broj3 = int.Parse(Console.ReadLine());
-
-            if (broj1 < broj2 && broj1 < broj3)
-            {
-                Console.WriteLine("Najmanji navedeni broj je {0}.", broj1);
-            }
-            else if (broj2 < broj1 && broj2 < broj3) 
-            {
-                Console.WriteLine("Najmanji navedeni broj je {0}.", broj2);
-            }
-            else if (broj3 < broj1 && broj3 < broj2)
-            {
-                Console.WriteLine("Najmanji navedeni broj je {0}.", broj3);
-            }    
-            else
-            {
-                Console.WriteLine("Jednaki brojevi.");
-            }
-        }
     }
 }
