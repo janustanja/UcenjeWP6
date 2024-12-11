@@ -7,4 +7,6 @@ using VjezbanjeZadataka;
 //_3Zadatak.Izvedi();
 //_4Zadatak.Izvedi();
 //_5Zadatak.Izvedi();
-_6Zadatak.Izvedi();
+//_6Zadatak.Izvedi();
+//_7Zadatak.Izvedi();
+_8Zadatak.Izvedi();
