@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ucenje
 {
+
+    // Program od korisnika unosi cijeli broj 
+    // Koristeći while petlju program ispisuje 
+    // zbroj svih parnih brojeva od 1 do unesenog broja (skupa s njim)
+    // unos 10 ispis 30
+    // unos 12 ispis 42
+
     internal class E09Z1
     {
+
         public static void Izvedi()
         {
-            Console.Write("Unesite cijeli broj : ");
-            int broj = int.Parse(Console.ReadLine());
-            int i = 0;
-            int suma = 0;
-            while (++i<=broj)
-            {
-                if (i % 2 == 0)
-                {
-                    suma += i;
-                } 
-            }
-            Console.WriteLine(suma);
+            //Console.WriteLine("Z1");
+
+           
         }
+
+
     }
 }
