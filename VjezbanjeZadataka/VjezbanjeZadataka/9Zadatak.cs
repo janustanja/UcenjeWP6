@@ -30,6 +30,16 @@ namespace VjezbanjeZadataka
             }
             else
             {
+                bool palindrom = true;
+                for (int i = 0; i < izraz.Length / 2; i++)
+                {
+                    if (izraz[i] != izraz[izraz.Length - 1 - i])
+                    {
+                        palindrom = false;
+                        break;
+                    }
+                }
+                Console.WriteLine(palindrom ? "Da" : "Ne");
                 //napisi i u ovom slucaju
                 Console.WriteLine("Neparno");
 
