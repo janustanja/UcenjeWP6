@@ -11,4 +11,5 @@ using VjezbanjeZadataka;
 //_7Zadatak.Izvedi();
 //_8Zadatak.Izvedi();
 //_9Zadatak.Izvedi();
-_10Zadatak.Izvedi();
+//_10Zadatak.Izvedi();
+_11ZadatakLosealidobro.Izvedi();
