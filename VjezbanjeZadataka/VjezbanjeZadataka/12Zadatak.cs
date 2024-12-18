@@ -8,6 +8,8 @@ namespace VjezbanjeZadataka
 {
     internal class _12Zadatak
     {
+        //FAKTORIJELE od 1 do 10
+        //al treba dodati while da kada unese neko krivi broj da mu se to kaze
         public static void Izvedi()
         {
             int broj = UcitajCijeliBroj("Unesi broj: ");
