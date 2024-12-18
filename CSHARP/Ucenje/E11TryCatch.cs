@@ -8,6 +8,7 @@ namespace Ucenje
 {
     internal class E11TryCatch
     {
+
         public static void Izvedi()
         {
             //Console.WriteLine("E11");
@@ -16,18 +17,18 @@ namespace Ucenje
             {
                 try
                 {
-                    Console.WriteLine("Unesi cijeli broj: ");
+                    Console.Write("Unesi cijeli broj: ");
                     broj = int.Parse(Console.ReadLine());
                     break;
-
                 }
                 catch
                 {
-                    Console.WriteLine("Nije unesen cijeli broj.");
+                    Console.WriteLine("Nisi unio cijeli broj!");
                 }
-
             }
-            //Console.WriteLine("Bravo, unijeli ste {0}.", broj);
+            //Console.WriteLine("Bravo, unijeli ste {0}",broj);
+
+
             int godine;
             while (true)
             {
@@ -35,21 +36,22 @@ namespace Ucenje
                 try
                 {
                     godine = int.Parse(Console.ReadLine());
-                    if(godine < 1 || godine > 104)
+                    if (godine < 1 || godine > 104)
                     {
                         Console.WriteLine("Uneseni broj godina nije dobar!");
                         continue;
                     }
                     break;
-
                 }
-                catch 
+                catch
                 {
-                    Console.WriteLine("Nisi dobro unio broj godina.");
+                    Console.WriteLine("Nisi dobro unio broj godina");
+
                 }
             }
-            Console.WriteLine("Broj godina osobe je {0}!", godine);
+            Console.WriteLine("Broj godina osobe je {0}", godine);
 
+            // unesi grad
             string grad;
             int ascii;
             bool ok;
@@ -57,15 +59,17 @@ namespace Ucenje
             {
                 Console.Write("Unesi ime grada: ");
                 grad = Console.ReadLine().Trim();
-                if (grad.Length == 0)
+                if(grad.Length==0)
                 {
-                    Console.WriteLine("Nisi unio ime grada.");
+                    Console.WriteLine("Nisi unio ime grada");
                     continue;
                 }
+                // ovdje sam siguran da je nešto unio
+
                 try
                 {
                     int.Parse(grad);
-                    Console.WriteLine("Ime grada ne može biti broj!");
+                    Console.WriteLine("Ime grada ne može biti broj");
                     continue;
                 }
                 catch 
@@ -73,26 +77,36 @@ namespace Ucenje
 
                     
                 }
+                // ovdje sam siguran da nije unio broj
+
+                //problem 0sijek, Os!jek, Osi jek
                 ok = true;
-                foreach(char c in grad)
+                foreach(char c in grad.ToUpper())
                 {
                     ascii = (int)c;
-                    if (ascii<65 || ascii > 90)
+                    if(ascii <65 || ascii > 90)
                     {
-                        ok= false;
+                        ok = false;
                         break;
                     }
-                    
                 }
                 if (!ok)
                 {
-                    Console.WriteLine("Problem s jednim od znakova u nazivu grada.");
+                    Console.WriteLine("Problem s jednim od znakova u nazivu grada");
                     continue;
                 }
+
+
+
                 break;
-            
             }
-            Console.WriteLine("Unijeli ste: >{0}<", grad);
+            Console.WriteLine("Unijeli ste: >{0}<",grad);
+
+
+
+
+
         }
+
     }
 }
