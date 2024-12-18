@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace Ucenje
 {
+
+    // Program za dva unesena broja ispisuje njihov zbroj
+
     internal class E12Z1
     {
+
         public static void Izvedi()
         {
             int pb = E12Metode.UcitajCijeliBroj("Unesi prvi broj: ");
             int db = E12Metode.UcitajCijeliBroj("Unesi drugi broj: ");
 
-            Console.WriteLine("{0} + {1} = {2}", pb, db, pb+db);
-        }
+            Console.WriteLine("{0} + {1} = {2}",pb,db,pb+db);
 
+        }
 
     }
 }
