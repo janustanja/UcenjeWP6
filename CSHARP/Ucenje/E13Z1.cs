@@ -6,27 +6,14 @@ using System.Threading.Tasks;
 
 namespace Ucenje
 {
+
+    // Program od korisnika unosi cijeli broj koji mora biti veći od 0 i manji od 10
+    // Program ispisuje faktorijel od unesenog broja (npr. 2*3*4*5*6 za uneseni broj 6)
+
     internal class E13Z1
     {
-        public static void Izvedi()
-        {
-            int broj = E12Metode.UcitajCijeliBroj("Unesi broj: ");
-            while (broj < 0 || broj > 0)
-            {
-                Console.WriteLine("Broj mora biti između 1 i 9!");
-                broj = E12Metode.UcitajCijeliBroj("Unesi broj:");
-            }
-            Console.WriteLine(Mnozi(broj));
-        }
-        private static int Mnozi(int broj)
-        {
-            if (broj >1 && broj < 10)
-            {
-                return broj * Mnozi(broj-1);
-            }
-            //return broj * Mnozi(broj - 1);
-            return broj;
 
-        }
+        
+
     }
 }

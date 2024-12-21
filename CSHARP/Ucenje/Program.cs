@@ -1,12 +1,17 @@
 ﻿
 
-using Ucenje; 
+using Ucenje;
 
-E13Z2.Izvedi(); 
+//E15Subota.Izvedi();
+
+//E14Vjezbanje.Izvedi();
+
+//E13Z2.Izvedi();
 
 //E13Z1.Izvedi();
 
 //E13Rekurzija.Izvedi();
+
 
 //E12Z1.Izvedi();
 
@@ -18,7 +23,7 @@ E13Z2.Izvedi();
 
 //E11TryCatch.Izvedi();
 
-//E10Z1.Izvedi();
+E10Z1.Izvedi();
 //E10ForeachPetlja.Izvedi();
 
 //E09Z2.Izvedi();
