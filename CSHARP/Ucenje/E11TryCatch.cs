@@ -84,7 +84,7 @@ namespace Ucenje
                 foreach(char c in grad.ToUpper())
                 {
                     ascii = (int)c;
-                    if(ascii <65 || ascii > 90)
+                    if(ascii <65 || ascii > 90) //
                     {
                         ok = false;
                         break;
