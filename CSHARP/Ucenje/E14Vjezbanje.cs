@@ -125,9 +125,7 @@ namespace Ucenje
                 {
                     Console.WriteLine("{0}: {1}", izraz[i], niz[i]);
                 }
-
-            }
-            
+            }  
         }
 
         private static void ZbrojZnamenkiBroja()
