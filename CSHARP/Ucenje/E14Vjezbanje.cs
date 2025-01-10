@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +23,9 @@ namespace Ucenje
             Izbornik();
             Console.WriteLine("Hvala na korištenju, doviđenja");
         }
+
+       
+
 
         private static void Izbornik()
         {
@@ -84,48 +86,55 @@ namespace Ucenje
 
         private static void PrebrojavanjeBrojaZnakova()
         {
-            NaslovPrograma("Prebrojavanje znakova u izrazu");
+            NaslovPrograma("Prezrojavanje znakova u izrazu");
+
             string izraz = E12Metode.UcitajString("Unesi izraz: ").ToLower();
-            int[] niz =new int[izraz.Length];
-            bool[] ispisi = new bool[izraz.Length];
+
+            // Danas pada snijeg --> vanjska petlja
+            // Danas pada snijeg -> unutarnja petlja
+            int[] niz = new int[izraz.Length];
+            bool[] ispisi = new bool[izraz.Length]; // njegove sve vrijednosti su false
             int b;
-            for (int i = 0; i < izraz.Length; i++)
+            for(int i=0;i<izraz.Length;i++)
             {
                 b = 0;
-                foreach (char c in izraz)
+                foreach(char c in izraz)
                 {
                     if (izraz[i] == c)
                     {
                         b++;
                     }
-                    niz[i] = b;
-                    if (b > 1)
+                }
+                niz[i]= b;
+                // ako je b>1 tada treba na SAMO prvo pojavljivanje tog slova staviti true
+                if (b > 1)
+                {
+                    for(int j = 0; j < izraz.Length; j++)
                     {
-                        for(int j = 0; j<izraz.Length; j++)
+                        if (izraz[i] == izraz[j])
                         {
-                            if (izraz[i] == izraz[j])
-                            {
-                                ispisi[j] = true;
-                                break;
-                            }
+                            ispisi[j] = true;
+                            break;
                         }
-
-                    }
-                    else
-                    {
-                        ispisi[i] = true;
                     }
                 }
+                // inače na to slovo stavi true
+                else
+                {
+                    ispisi[i] = true;
+                }
             }
-                
-                //Console.WriteLine(string.Join(" , ", niz));
-            for (int i=0; i < izraz.Length; i++)
+            //Console.WriteLine(string.Join(",",ispisi));
+            for(int i = 0; i < izraz.Length; i++)
             {
                 if (ispisi[i] && izraz[i]!=' ')
                 {
-                    Console.WriteLine("{0}: {1}", izraz[i], niz[i]);
+                    Console.Write("{0} ({1}) ", izraz[i], niz[i]);
                 }
-            }  
+                
+            }
+            Console.WriteLine();
+
         }
 
         private static void ZbrojZnamenkiBroja()
@@ -133,33 +142,46 @@ namespace Ucenje
             NaslovPrograma("Zbroj znamenki broja");
             string broj = E12Metode.UcitajString("Unesi cijeli broj: ");
             int manjiOd = E12Metode.UcitajCijeliBroj("Zbroj mora biti manji od: ");
+
             if (!provjeraBrojaURedu(broj))
             {
-                Console.WriteLine("Nije dobar broj.");
-                return;
+                Console.WriteLine("Nije dobar broj");
+                return; // short cuircuitng
             }
 
-            int rez = int.MaxValue;
-            while (rez > manjiOd) 
+            // mi smo sada sigurni da u našem stringu broj postoje samo znakovi koji su brojevi
+
+            // ulaz broj: 32472365354523523676576576576563423422 - string
+            // 168, rez varijabla int -> prebaziti u string
+            // 15
+            // 6
+
+            int rez = int.MaxValue; // mogao sam ići i s 10 (bolje je ne koristiti konstante)
+            while (rez > manjiOd)
             {
-                rez = 0;  //(int)BigInteger.Zero;
-                foreach (char c in broj)
+                rez = 0; //(int)BigInteger.Zero;
+                foreach(char c in broj)
                 {
                     rez += int.Parse(c.ToString());
                 }
                 Console.WriteLine(rez);
-                broj=rez.ToString();
+                broj = rez.ToString();
             }
+
+            Console.WriteLine(rez);
+
+
+
         }
+
         private static bool provjeraBrojaURedu(string broj)
         {
-            foreach (char z in broj){
+            foreach(char z in broj){
                 try
                 {
                     int.Parse(z.ToString());
-
                 }
-                catch 
+                catch
                 {
                     return false;
                 }
