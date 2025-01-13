@@ -2,9 +2,9 @@
 
 using Ucenje;
 
+new Ucenje.E17KlasaObjekt.Program();
 
-
-E14Vjezbanje.Izvedi();
+//E14Vjezbanje.Izvedi();
 
 //E15Subota.Izvedi();
 
