@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace VjezbanjeZadataka.ZavrsniRad
 {
-    internal class Entitet
+    public class Entitet
     {
+        public int Sifra { get; set; }
     }
 }

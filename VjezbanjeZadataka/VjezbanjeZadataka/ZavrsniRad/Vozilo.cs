@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace VjezbanjeZadataka.ZavrsniRad
 {
-    public class Vozilo
-    {
-        public int Sifra { get; set; }
+    public class Vozilo : Entitet
+    { 
         public VrstaVozila VrstaVozila { get; set; }
         public Dobavljac Dobavljac { get; set; }
         public string Marka { get; set; }
