@@ -2,7 +2,9 @@
 
 using Ucenje;
 
+// nova instanca klase program
 new Ucenje.E17KlasaObjekt.Program();
+
 
 //E14Vjezbanje.Izvedi();
 

@@ -12,17 +12,17 @@ namespace Ucenje.E17KlasaObjekt.edunova
         public string Naziv { get; set; } = "";
         public int VelicinaGrupe { get; set; }
         public string? Predavac { get; set; }
-        public Smjer Smjer { get; set; } =new Smjer();
+        public Smjer Smjer { get; set; } = new Smjer();
         public Polaznik[]? Polaznici { get; set; }
-
 
         public void DetaljiGrupe()
         {
             Console.WriteLine(Naziv);
             Console.WriteLine(Smjer.Naziv);
-            foreach(Polaznik p in Polaznici?? [])
+            foreach (Polaznik p in Polaznici?? [])
             {
                 Console.WriteLine(p.ImePrezime());
+                //Console.WriteLine("{0} {1}", p.Ime, p.Prezime); ovoj liniji nije ovdje mjesto
             }
         }
     }

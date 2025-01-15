@@ -14,7 +14,6 @@ namespace Ucenje.E17KlasaObjekt.edunova
         public string Email { get; set; } = "";
         public string? Oib { get; set; }
 
-
         public string ImePrezime()
         {
             return Ime + " " + Prezime;
