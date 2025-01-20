@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ucenje.E18NasljedivanjePolimorfizam
+namespace Ucenje.E19GenericiLambdaEkstenzije
 {
-    public class EntitetImpl:Entitet
+    public abstract class Entitet
     {
+        public int Sifra { get; set; }
+
     }
 }

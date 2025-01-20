@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,31 +56,27 @@ namespace Ucenje.E18NasljedivanjePolimorfizam
 
             Console.WriteLine(smjer.Equals(smjer2));
 
+
+            // ima li smisla raditi instancu klase Entitet??
             //var e = new Entitet();
             //e.Sifra = 1;
 
             var e = new EntitetImpl() { Sifra = 1 };
 
 
+            // još nismo na polimorfizmu
+
             Obrada[] obrade = new Obrada[2];
+
             obrade[0] = new ObradaUlazniRacun();
             obrade[1] = new ObradaIzlazniRacun();
 
-            foreach (Obrada o in obrade)
+
+            // polimorfizam
+            foreach(Obrada o in obrade)
             {
                 o.Procesuiraj();
             }
-
-
-
-
-
-
-
-
-
-
-
 
 
         }

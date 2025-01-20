@@ -11,16 +11,14 @@ namespace Ucenje.E18NasljedivanjePolimorfizam
         public string Ime { get; set; } = "";
         public string Prezime { get; set; } = "";
 
-        public Osoba()
-        {
-
+        public Osoba() 
+        { 
         }
 
-        public Osoba (string ime, string prezime)
+        public Osoba(string ime, string prezime)
         {
-            Ime =ime;
-            Prezime =prezime;
-
+            Ime=ime;
+            Prezime=prezime;
         }
     }
 }
