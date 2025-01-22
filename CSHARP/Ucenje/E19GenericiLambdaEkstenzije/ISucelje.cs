@@ -10,5 +10,4 @@ namespace Ucenje.E19GenericiLambdaEkstenzije
     {
         public void OdradiPosao();
     }
-    
 }

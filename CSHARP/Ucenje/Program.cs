@@ -2,7 +2,9 @@
 
 using Ucenje;
 
-new Ucenje.E19GenericiLambdaEkstenzije.Program();
+new Ucenje.E20KonzolnaAplikacija.Izbornik();
+
+//new Ucenje.E19GenericiLambdaEkstenzije.Program();
 
 //new Ucenje.E18NasljedivanjePolimorfizam.Program("E18");
 

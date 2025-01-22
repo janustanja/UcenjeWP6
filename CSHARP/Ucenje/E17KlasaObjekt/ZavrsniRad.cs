@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ucenje.E17KlasaObjekt
 {
-    public class ZavrsniRad
+    public class GreskomNapravljeno
     {
         
     }
