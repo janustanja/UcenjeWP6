@@ -90,7 +90,7 @@ namespace Ucenje.E20KonzolnaAplikacija
             odabrani.Ime = Pomocno.UcitajString(odabrani.Ime,"Unesi ime polaznika", 50, true);
             odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true);
             odabrani.Email = Pomocno.UcitajString("Unesi email polaznika", 50, true);
-            odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika", 50, true);
+            odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika", 11, true);
         }
 
         public void PrikaziPolaznike()
