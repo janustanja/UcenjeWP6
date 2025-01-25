@@ -11,6 +11,7 @@ new Ucenje.E20KonzolnaAplikacija.Izbornik();
 // nova instanca klase program
 //new Ucenje.E17KlasaObjekt.Program();
 
+
 //E14Vjezbanje.Izvedi();
 
 //E15Subota.Izvedi();
@@ -23,16 +24,18 @@ new Ucenje.E20KonzolnaAplikacija.Izbornik();
 
 //E13Rekurzija.Izvedi();
 
+
 //E12Z1.Izvedi();
 
+
 //E12Metode.Izvedi();
+
 
 //E11Z1LOSE.Izvedi();
 
 //E11TryCatch.Izvedi();
 
 //E10Z1.Izvedi();
-
 //E10ForeachPetlja.Izvedi();
 
 //E09Z2.Izvedi();

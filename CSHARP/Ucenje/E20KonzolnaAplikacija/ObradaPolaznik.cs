@@ -105,6 +105,18 @@ namespace Ucenje.E20KonzolnaAplikacija
             Console.WriteLine("****************************");
         }
 
+        public void PrikaziPolaznike(List<Polaznik> lista, string naslov)
+        {
+            Console.WriteLine("*****************************");
+            Console.WriteLine(naslov);
+            int rb = 0;
+            foreach (var p in Polaznici)
+            {
+                Console.WriteLine(++rb + ". " + p.Ime + " " + p.Prezime); // prepisati metodu toString
+            }
+            Console.WriteLine("****************************");
+        }
+
         public void UnosNovogPolaznika()
         {
             Console.WriteLine("***************************");
