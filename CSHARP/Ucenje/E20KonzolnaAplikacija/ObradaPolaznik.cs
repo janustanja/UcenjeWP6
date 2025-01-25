@@ -95,14 +95,7 @@ namespace Ucenje.E20KonzolnaAplikacija
 
         public void PrikaziPolaznike()
         {
-            Console.WriteLine("*****************************");
-            Console.WriteLine("Polaznici u aplikaciji");
-            int rb = 0;
-            foreach (var p in Polaznici)
-            {
-                Console.WriteLine(++rb + ". " + p.Ime + " " + p.Prezime); // prepisati metodu toString
-            }
-            Console.WriteLine("****************************");
+            PrikaziPolaznike(Polaznici, "Popis polaznika u aplikaciji");
         }
 
         public void PrikaziPolaznike(List<Polaznik> lista, string naslov)
@@ -110,7 +103,7 @@ namespace Ucenje.E20KonzolnaAplikacija
             Console.WriteLine("*****************************");
             Console.WriteLine(naslov);
             int rb = 0;
-            foreach (var p in Polaznici)
+            foreach (var p in lista)
             {
                 Console.WriteLine(++rb + ". " + p.Ime + " " + p.Prezime); // prepisati metodu toString
             }

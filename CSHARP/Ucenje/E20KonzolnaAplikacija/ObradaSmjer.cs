@@ -120,7 +120,7 @@ namespace Ucenje.E20KonzolnaAplikacija
                     odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru smjera", 1, int.MaxValue);
                     break;
                     case 2:
-                        odabrani.Naziv = Pomocno.UcitajString("Unesi naziv smjera", 50, true);
+                        odabrani.Naziv = Pomocno.UcitajString("Unesi naziv smjera", 50, true, odabrani.Naziv);
                         break;
                     // ... ostali
                     case 5:
