@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI9", "WebAPI9\WebAPI9.csproj", "{A7E4B8CD-41A8-49FE-88E5-52312DDA5536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdunovaAPP", "EdunovaAPP\EdunovaAPP.csproj", "{CC2EBD93-0009-4053-B406-2FEF047DA07F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdunovaAPP", "EdunovaAPP\EdunovaAPP.csproj", "{EDA36823-5236-4E90-BFA4-154E185E183D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{A7E4B8CD-41A8-49FE-88E5-52312DDA5536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E4B8CD-41A8-49FE-88E5-52312DDA5536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7E4B8CD-41A8-49FE-88E5-52312DDA5536}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC2EBD93-0009-4053-B406-2FEF047DA07F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC2EBD93-0009-4053-B406-2FEF047DA07F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC2EBD93-0009-4053-B406-2FEF047DA07F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC2EBD93-0009-4053-B406-2FEF047DA07F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA36823-5236-4E90-BFA4-154E185E183D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA36823-5236-4E90-BFA4-154E185E183D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA36823-5236-4E90-BFA4-154E185E183D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA36823-5236-4E90-BFA4-154E185E183D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
