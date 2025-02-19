@@ -1,5 +1,7 @@
 using EdunovaAPP.Data;
+using EdunovaAPP.Mapping;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Intrinsics.Arm;
 
 // Dobro dodatno èitanje
 // 1. https://medium.com/@robhutton8/entity-framework-vs-repository-pattern-vs-unit-of-work-9fa093bd59e4
@@ -24,6 +26,22 @@ builder.Services.AddDbContext<EdunovaContext> (options => {
 });
 
 
+// Svi se od svuda na sve moguce nacine mogu spojitina naš API
+// Èitati https://code-maze.com/aspnetcore-webapi-best-practices/
+//  https://levelup.gitconnected.com/cors-finally-explained-simply-ae42b52a70a3
+builder.Services.AddCors(o => { 
+
+    o.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+
+});
+
+// automapper
+builder.Services.AddAutoMapper(typeof(EdunovaMappingProfile));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,5 +60,12 @@ app.UseSwaggerUI(o => {
 });
 
 app.MapControllers();
+
+app.UseCors("CorsPolicy");
+
+// za potrebe produkcije
+app.UseStaticFiles();
+app.UseDefaultFiles();
+app.MapFallbackToFile("index.html");
 
 app.Run();
