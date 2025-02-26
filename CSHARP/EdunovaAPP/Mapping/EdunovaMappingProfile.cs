@@ -11,9 +11,11 @@ namespace EdunovaAPP.Mapping
             // kreiramo mapiranja: izvor, odredište
             CreateMap<Smjer, SmjerDTORead>();
             CreateMap<SmjerDTOInsertUpdate, Smjer>();
+            CreateMap<Smjer, SmjerDTOInsertUpdate>();
 
             CreateMap<Polaznik, PolaznikDTORead>();
             CreateMap<PolaznikDTOInsertUpdate, Polaznik>();
+            CreateMap<Polaznik, PolaznikDTOInsertUpdate>();
 
 
             CreateMap<Grupa, GrupaDTORead>()

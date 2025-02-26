@@ -68,7 +68,6 @@ export default function SmjeroviPregled(){
             <thead>
                 <tr>
                     <th>Naziv</th>
-                    <th>Trajanje</th>
                     <th>Cijena</th>
                     <th>Izvodi se od</th>
                     <th>Vaučer</th>
@@ -80,9 +79,6 @@ export default function SmjeroviPregled(){
                     <tr key={index}>
                         <td>
                             {smjer.naziv}
-                        </td>
-                        <td className={smjer.trajanje==null ? 'sredina' : 'desno'}>
-                            {smjer.trajanje==null ? 'Nije definirano' : smjer.trajanje}
                         </td>
                         <td className={smjer.cijenaSmjera==null ? 'sredina' : 'desno'}>
 

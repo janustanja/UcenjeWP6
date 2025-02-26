@@ -1,9 +1,8 @@
-using EdunovaAPP.Data;
+Ôªøusing EdunovaAPP.Data;
 using EdunovaAPP.Mapping;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.Intrinsics.Arm;
 
-// Dobro dodatno Ëitanje
+// Dobro dodatno ƒçitanje
 // 1. https://medium.com/@robhutton8/entity-framework-vs-repository-pattern-vs-unit-of-work-9fa093bd59e4
 // 2. https://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework-core/
 // 3. https://medium.com/@rabinarayandev/should-you-use-uuids-for-database-keys-597b15b000bb
@@ -21,15 +20,15 @@ builder.Services.AddSwaggerGen();
 
 
 // dodavanje kontaksta baze podataka - dependency injection
-builder.Services.AddDbContext<EdunovaContext> (options => { 
+builder.Services.AddDbContext<EdunovaContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("EdunovaContext"));
 });
 
 
-// Svi se od svuda na sve moguce nacine mogu spojitina naö API
-// »itati https://code-maze.com/aspnetcore-webapi-best-practices/
+// Svi se od svuda na sve moguƒáe nacine mogu spojitina na≈° API
+// ƒçitati https://code-maze.com/aspnetcore-webapi-best-practices/
 //  https://levelup.gitconnected.com/cors-finally-explained-simply-ae42b52a70a3
-builder.Services.AddCors(o => { 
+builder.Services.AddCors(o => {
 
     o.AddPolicy("CorsPolicy", builder =>
     {
@@ -54,7 +53,7 @@ app.UseAuthorization();
 
 // dodati ove dvije linije za swagger
 app.UseSwagger();
-app.UseSwaggerUI(o => { 
+app.UseSwaggerUI(o => {
     o.EnableTryItOutByDefault();
     o.ConfigObject.AdditionalItems.Add("requestSnippetsEnabled", true);
 });

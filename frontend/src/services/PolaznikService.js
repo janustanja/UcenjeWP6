@@ -69,10 +69,21 @@ async function promjena(sifra,Polaznik) {
     })
 }
 
+async function traziPolaznik(uvjet){
+    return await HttpService.get('/Polaznik/trazi/'+uvjet)
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return {greska: false, poruka: odgovor.data}
+    })
+    .catch((e)=>{return {greska: true, poruka: 'Problem kod traženja polaznika'}})
+}
+
 export default{
     get,
     getBySifra,
     obrisi,
     dodaj,
-    promjena
+    promjena,
+
+    traziPolaznik
 }

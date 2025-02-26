@@ -70,10 +70,44 @@ async function promjena(sifra,Grupa) {
     })
 }
 
+
+async function getPolaznici(sifra){
+    return await HttpService.get('/Grupa/Polaznici/'+ sifra)
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return {greska: false, poruka: odgovor.data}
+    })
+    .catch((e)=>{return {greska: true, poruka: 'Problem kod dohvaćanja polaznika'}})
+}
+
+async function dodajPolaznika(grupa,polaznik) {
+    return await HttpService.post('/Grupa/' + grupa + '/dodaj/'+polaznik)
+    .then((odgovor)=>{
+        return {greska: false, poruka: odgovor.data}
+    })
+    .catch((e)=>{
+                return {greska: true, poruka: 'Polaznik se ne može dodati na grupu'}
+    })
+}
+
+async function obrisiPolaznika(grupa,polaznik) {
+    return await HttpService.delete('/Grupa/' + grupa + '/obrisi/'+polaznik)
+    .then((odgovor)=>{
+        return {greska: false, poruka: odgovor.data}
+    })
+    .catch((e)=>{
+                return {greska: true, poruka: 'Polaznik se ne može obrisati iz grupe'}
+    })
+}
+
 export default{
     get,
     getBySifra,
     obrisi,
     dodaj,
-    promjena
+    promjena,
+
+    getPolaznici,
+    dodajPolaznika,
+    obrisiPolaznika
 }

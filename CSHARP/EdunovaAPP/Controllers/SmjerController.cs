@@ -35,7 +35,7 @@ namespace EdunovaAPP.Controllers
 
         [HttpGet]
         [Route("{sifra:int}")]
-        public ActionResult<SmjerDTORead> GetBySifra(int sifra)
+        public ActionResult<SmjerDTOInsertUpdate> GetBySifra(int sifra)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +55,7 @@ namespace EdunovaAPP.Controllers
                 return NotFound(new { poruka = "Smjer ne postoji u bazi" });
             }
 
-            return Ok(_mapper.Map<SmjerDTORead>(e));
+            return Ok(_mapper.Map<SmjerDTOInsertUpdate>(e));
         }
 
         [HttpPost]

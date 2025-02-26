@@ -35,7 +35,7 @@ namespace EdunovaAPP.Controllers
 
         [HttpGet]
         [Route("{sifra:int}")]
-        public ActionResult<PolaznikDTORead> GetBySifra(int sifra)
+        public ActionResult<PolaznikDTOInsertUpdate> GetBySifra(int sifra)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +55,7 @@ namespace EdunovaAPP.Controllers
                 return NotFound(new { poruka = "Polaznik ne postoji u bazi" });
             }
 
-            return Ok(_mapper.Map<PolaznikDTORead>(e));
+            return Ok(_mapper.Map<PolaznikDTOInsertUpdate>(e));
         }
 
         [HttpPost]
@@ -154,6 +154,31 @@ namespace EdunovaAPP.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("trazi/{uvjet}")]
+        public ActionResult<List<PolaznikDTORead>> TraziPolaznik(string uvjet)
+        {
+            if (uvjet == null || uvjet.Length < 3)
+            {
+                return BadRequest(ModelState);
+            }
+            uvjet = uvjet.ToLower();
+            try
+            {
+                IEnumerable<Polaznik> query = _context.Polaznici;
+                var niz = uvjet.Split(" ");
+                foreach (var s in uvjet.Split(" "))
+                {
+                    query = query.Where(p => p.Ime.ToLower().Contains(s) || p.Prezime.ToLower().Contains(s));
+                }
+                var polaznici = query.ToList();
+                return Ok(_mapper.Map<List<PolaznikDTORead>>(polaznici));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { poruka = e.Message });
+            }
+        }
 
 
     }

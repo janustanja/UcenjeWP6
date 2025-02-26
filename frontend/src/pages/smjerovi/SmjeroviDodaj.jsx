@@ -26,7 +26,7 @@ export default function SmjeroviDodaj(){
         //console.log(podaci.get('naziv'))
         dodaj({
             naziv: podaci.get('naziv'),
-            cijenaSmjera: parseFloat(podaci.get('cijenaSmjera')),
+            cijenaSmjera: parseFloat(podaci.get('cijena')),
             izvodiSeOd: moment.utc(podaci.get('izvodiSeOd')),
             vaucer: podaci.get('vaucer')=='on' ? true : false 
         })
@@ -42,9 +42,10 @@ export default function SmjeroviDodaj(){
                 <Form.Control type="text" name="naziv" required />
             </Form.Group>
 
-            <Form.Group controlId="cijenaSmjera">
+
+            <Form.Group controlId="cijena">
                 <Form.Label>Cijena</Form.Label>
-                <Form.Control type="number" step={0.01} name="cijenaSmjera"  />
+                <Form.Control type="number" step={0.01} name="cijena"  />
             </Form.Group>
 
             <Form.Group controlId="izvodiSeOd">

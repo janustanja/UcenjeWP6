@@ -47,7 +47,7 @@ export default function SmjeroviPromjena(){
         //console.log(podaci.get('naziv'))
         promjena({
             naziv: podaci.get('naziv'),
-            cijenaSmjera: parseFloat(podaci.get('cijenaSmjera')),
+            cijenaSmjera: parseFloat(podaci.get('cijena')),
             izvodiSeOd: moment.utc(podaci.get('izvodiSeOd')),
             vaucer: podaci.get('vaucer')=='on' ? true : false 
         })
@@ -64,9 +64,9 @@ export default function SmjeroviPromjena(){
                 defaultValue={smjer.naziv} />
             </Form.Group>
 
-            <Form.Group controlId="cijenaSmjera">
+            <Form.Group controlId="cijena">
                 <Form.Label>Cijena</Form.Label>
-                <Form.Control type="number" step={0.01} name="cijenaSmjera" defaultValue={smjer.cijenaSmjera}/>
+                <Form.Control type="number" step={0.01} name="cijena" defaultValue={smjer.cijenaSmjera}/>
             </Form.Group>
 
             <Form.Group controlId="izvodiSeOd">
@@ -75,7 +75,7 @@ export default function SmjeroviPromjena(){
             </Form.Group>
 
             <Form.Group controlId="vaucer">
-                <Form.Check label="Vaučer" name="vaucer" 
+            <Form.Check label="Vaučer" name="vaucer" 
                 onChange={(e)=>setVaucer(e.target.checked)}
                 checked={vaucer}  />
             </Form.Group>

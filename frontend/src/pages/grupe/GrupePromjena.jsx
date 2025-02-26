@@ -1,9 +1,12 @@
-import { Button, Col, Form, Row} from 'react-bootstrap';
+import { Form, Row, Col, Table, Button } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
 import Service from '../../services/GrupaService';
 import SmjerService from '../../services/SmjerService';
+import PolaznikService from '../../services/PolaznikService';
 import { RouteNames } from '../../constants';
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 
 
 export default function GrupePromjena() {
@@ -12,8 +15,12 @@ export default function GrupePromjena() {
 
   const [smjerovi, setSmjerovi] = useState([]);
   const [smjerSifra, setSmjerSifra] = useState(0);
+  const [polaznici, setPolaznici] = useState([]);
+  const [pronadeniPolaznici, setPronadeniPolaznici] = useState([]);
 
   const [grupa, setGrupa] = useState({});
+
+  const typeaheadRef = useRef(null);
 
   async function dohvatiSmjerove(){
     const odgovor = await SmjerService.get();
@@ -31,9 +38,48 @@ export default function GrupePromjena() {
     setSmjerSifra(grupa.smjerSifra); 
   }
 
+  async function dohvatiPolaznici() {
+    const odgovor = await Service.getPolaznici(routeParams.sifra);
+    if(odgovor.greska){
+      alert(odgovor.poruka);
+      return;
+    }
+    setPolaznici(odgovor.poruka);
+  }
+
+  async function traziPolaznik(uvjet) {
+    const odgovor =  await PolaznikService.traziPolaznik(uvjet);
+    if(odgovor.greska){
+      alert(odgovor.poruka);
+      return;
+    }
+    setPronadeniPolaznici(odgovor.poruka);
+  }
+
+  async function dodajPolaznika(e) {
+    const odgovor = await Service.dodajPolaznika(routeParams.sifra, e[0].sifra);
+    if(odgovor.greska){
+      alert(odgovor.poruka);
+      return;
+    }
+      await dohvatiPolaznici();
+      typeaheadRef.current.clear();
+  }
+
+  async function obrisiPolaznika(polaznik) {
+    const odgovor = await Service.obrisiPolaznika(routeParams.sifra, polaznik);
+    if(odgovor.greska){
+      alert(odgovor.poruka);
+      return;
+    }
+      await dohvatiPolaznici();
+  }
+
+
   async function dohvatiInicijalnePodatke() {
     await dohvatiSmjerove();
     await dohvatiGrupa();
+    await dohvatiPolaznici();
   }
 
 
@@ -61,60 +107,117 @@ export default function GrupePromjena() {
       naziv: podaci.get('naziv'),
       smjerSifra: parseInt(smjerSifra),
       predavac: podaci.get('predavac'),
-      maksimalnoPolaznika: parseInt(podaci.get('maksimalnopolaznika'))
+      maksimalnopolaznika: parseInt(podaci.get('maksimalnopolaznika'))
     });
   }
 
   return (
       <>
       Mjenjanje podataka grupe
+      <Row>
+        <Col key='1' sm={12} lg={6} md={6}>
+          <Form onSubmit={obradiSubmit}>
+              <Form.Group controlId="naziv">
+                  <Form.Label>Naziv</Form.Label>
+                  <Form.Control type="text" name="naziv" required defaultValue={grupa.naziv}/>
+              </Form.Group>
+
+              <Form.Group className='mb-3' controlId='smjer'>
+                <Form.Label>Smjer</Form.Label>
+                <Form.Select
+                value={smjerSifra}
+                onChange={(e)=>{setSmjerSifra(e.target.value)}}
+                >
+                {smjerovi && smjerovi.map((s,index)=>(
+                  <option key={index} value={s.sifra}>
+                    {s.naziv}
+                  </option>
+                ))}
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group controlId="predavac">
+                  <Form.Label>Predavač</Form.Label>
+                  <Form.Control type="text" name="predavac" required defaultValue={grupa.predavac}/>
+              </Form.Group>
+
+              <Form.Group controlId="maksimalnopolaznika">
+                  <Form.Label>Maksimalno polaznika</Form.Label>
+                  <Form.Control type="number" name="maksimalnopolaznika" min={5} max={30} defaultValue={grupa.maksimalnoPolaznika}/>
+              </Form.Group>
+
+
+              <hr />
+              <Row>
+                  <Col xs={6} sm={6} md={3} lg={6} xl={6} xxl={6}>
+                  <Link to={RouteNames.GRUPA_PREGLED}
+                  className="btn btn-danger siroko">
+                  Odustani
+                  </Link>
+                  </Col>
+                  <Col xs={6} sm={6} md={9} lg={6} xl={6} xxl={6}>
+                  <Button variant="primary" type="submit" className="siroko">
+                      Promjeni grupu
+                  </Button>
+                  </Col>
+              </Row>
+          </Form>
+        </Col>
+        <Col key='2' sm={12} lg={6} md={6}>
+        <div style={{overflow: 'auto', maxHeight:'400px'}}>
+        <Form.Group className='mb-3' controlId='uvjet'>
+          <Form.Label>Traži polaznika</Form.Label>
+            <AsyncTypeahead
+            className='autocomplete'
+            id='uvjet'
+            emptyLabel='Nema rezultata'
+            searchText='Tražim...'
+            labelKey={(polaznik) => `${polaznik.prezime} ${polaznik.ime}`}
+            minLength={3}
+            options={pronadeniPolaznici}
+            onSearch={traziPolaznik}
+            placeholder='dio imena ili prezimena'
+            renderMenuItemChildren={(polaznik) => (
+              <>
+                <span>
+                   {polaznik.prezime} {polaznik.ime}
+                </span>
+              </>
+            )}
+            onChange={dodajPolaznika}
+            ref={typeaheadRef}
+            />
+          </Form.Group>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Polaznici na grupi</th>
+                <th>Akcija</th>
+              </tr>
+            </thead>
+            <tbody>
+              {polaznici &&
+                polaznici.map((polaznik, index) => (
+                  <tr key={index}>
+                    <td>
+                       {polaznik.ime} {polaznik.prezime}
+                      
+                    </td>
+                    <td>
+                      <Button variant='danger' onClick={() =>
+                          obrisiPolaznika(polaznik.sifra)
+                        } >
+                        <FaTrash />
+                      </Button>
       
-      <Form onSubmit={obradiSubmit}>
-          <Form.Group controlId="naziv">
-              <Form.Label>Naziv</Form.Label>
-              <Form.Control type="text" name="naziv" required defaultValue={grupa.naziv}/>
-          </Form.Group>
-
-          <Form.Group className='mb-3' controlId='smjer'>
-            <Form.Label>Smjer</Form.Label>
-            <Form.Select
-            value={smjerSifra}
-            onChange={(e)=>{setSmjerSifra(e.target.value)}}
-            >
-            {smjerovi && smjerovi.map((s,index)=>(
-              <option key={index} value={s.sifra}>
-                {s.naziv}
-              </option>
-            ))}
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group controlId="predavac">
-              <Form.Label>Predavač</Form.Label>
-              <Form.Control type="text" name="predavac" required defaultValue={grupa.predavac}/>
-          </Form.Group>
-
-          <Form.Group controlId="maksimalnopolaznika">
-              <Form.Label>Maksimalno polaznika</Form.Label>
-              <Form.Control type="number" name="maksimalnopolaznika" min={5} max={30} defaultValue={grupa.maksimalnoPolaznika}/>
-          </Form.Group>
-
-
-          <hr />
-          <Row>
-              <Col xs={6} sm={6} md={3} lg={6} xl={6} xxl={6}>
-              <Link to={RouteNames.GRUPA_PREGLED}
-              className="btn btn-danger siroko">
-              Odustani
-              </Link>
-              </Col>
-              <Col xs={6} sm={6} md={9} lg={6} xl={6} xxl={6}>
-              <Button variant="primary" type="submit" className="siroko">
-                  Promjeni grupu
-              </Button>
-              </Col>
-          </Row>
-      </Form>
-  </>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
+          </div>
+        </Col>
+        </Row>
+        </>
   );
 }

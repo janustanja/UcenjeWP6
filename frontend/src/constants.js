@@ -15,4 +15,4 @@ export const RouteNames = {
     GRUPA_PROMJENA: '/grupe/:sifra'
 }
 
-export const BACKEND_URL = 'https://tjakopec-001-site2.ntempurl.com/api/v1'
+export const PRODUKCIJA = 'https://tjakopec-001-site2.ntempurl.com'
