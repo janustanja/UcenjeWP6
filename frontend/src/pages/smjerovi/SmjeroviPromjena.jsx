@@ -4,6 +4,8 @@ import moment from "moment";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import { useEffect, useState } from "react";
+import useLoading from "../../hooks/useLoading";
+import useError from '../../hooks/useError';
 
 
 export default function SmjeroviPromjena(){
@@ -11,12 +13,16 @@ export default function SmjeroviPromjena(){
     const [smjer,setSmjer] = useState({})
     const [vaucer,setVaucer] = useState(false)
     const navigate = useNavigate()
+    const { showLoading, hideLoading } = useLoading();
     const routeParams = useParams()
+    const { prikaziError } = useError();
 
     async function dohvatiSmjer(){
+        showLoading();
         const odgovor = await SmjerService.getBySifra(routeParams.sifra);
+        hideLoading();
         if(odgovor.greska){
-            alert(odgovor.poruka)
+            prikaziError(odgovor.poruka)
             return
         }
         //debugger; // ovo radi u Chrome inspect (ali i ostali preglednici)
@@ -31,11 +37,11 @@ export default function SmjeroviPromjena(){
      },[])
 
      async function promjena(smjer) {
-        //console.log(smjer)
-        //console.log(JSON.stringify(smjer))
+        showLoading();
         const odgovor = await SmjerService.promjena(routeParams.sifra,smjer)
+        hideLoading();
         if(odgovor.greska){
-            alert(odgovor.poruka)
+            prikaziError(odgovor.poruka)
             return;
         }
         navigate(RouteNames.SMJER_PREGLED)
@@ -47,7 +53,7 @@ export default function SmjeroviPromjena(){
         //console.log(podaci.get('naziv'))
         promjena({
             naziv: podaci.get('naziv'),
-            cijenaSmjera: parseFloat(podaci.get('cijena')),
+            cijena: parseFloat(podaci.get('cijena')),
             izvodiSeOd: moment.utc(podaci.get('izvodiSeOd')),
             vaucer: podaci.get('vaucer')=='on' ? true : false 
         })
@@ -64,9 +70,10 @@ export default function SmjeroviPromjena(){
                 defaultValue={smjer.naziv} />
             </Form.Group>
 
+
             <Form.Group controlId="cijena">
                 <Form.Label>Cijena</Form.Label>
-                <Form.Control type="number" step={0.01} name="cijena" defaultValue={smjer.cijenaSmjera}/>
+                <Form.Control type="number" step={0.01} name="cijena" defaultValue={smjer.cijena}/>
             </Form.Group>
 
             <Form.Group controlId="izvodiSeOd">

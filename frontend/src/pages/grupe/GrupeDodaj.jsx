@@ -4,16 +4,23 @@ import { useEffect, useState } from 'react';
 import Service from '../../services/GrupaService';
 import SmjerService from '../../services/SmjerService';
 import { RouteNames } from '../../constants';
+import useLoading from "../../hooks/useLoading";
+import useError from '../../hooks/useError';
 
 
 export default function GrupeDodaj() {
   const navigate = useNavigate();
+  const { showLoading, hideLoading } = useLoading();
 
   const [smjerovi, setSmjerovi] = useState([]);
   const [smjerSifra, setSmjerSifra] = useState(0);
 
+  const { prikaziError } = useError();
+
   async function dohvatiSmjerove(){
+    showLoading();
     const odgovor = await SmjerService.get();
+    hideLoading();
     setSmjerovi(odgovor.poruka);
     setSmjerSifra(odgovor.poruka[0].sifra);
   }
@@ -26,9 +33,11 @@ export default function GrupeDodaj() {
   },[]);
 
   async function dodaj(e) {
+    showLoading();
     const odgovor = await Service.dodaj(e);
+    hideLoading();
     if(odgovor.greska){
-      alert(odgovor.poruka);
+      prikaziError(odgovor.poruka);
       return;
     }
     navigate(RouteNames.GRUPA_PREGLED);

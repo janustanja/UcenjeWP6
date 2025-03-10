@@ -41,7 +41,7 @@ async function dodaj(Polaznik) {
             case 400:
                 let poruke='';
                 for(const kljuc in e.response.data.errors){
-                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + '\n';
+                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + ', ';
                 }
                 return {greska: true, poruka: poruke}
             default:
@@ -60,7 +60,7 @@ async function promjena(sifra,Polaznik) {
             case 400:
                 let poruke='';
                 for(const kljuc in e.response.data.errors){
-                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + '\n';
+                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + ', ';
                 }
                 return {greska: true, poruka: poruke}
             default:
@@ -78,6 +78,31 @@ async function traziPolaznik(uvjet){
     .catch((e)=>{return {greska: true, poruka: 'Problem kod traženja polaznika'}})
 }
 
+
+
+
+async function getStranicenje(stranica,uvjet){
+    return await HttpService.get('/Polaznik/traziStranicenje/'+stranica + '?uvjet=' + uvjet)
+    .then((odgovor)=>{return  {greska: false, poruka: odgovor.data};})
+    .catch((e)=>{ return {greska: true, poruka: 'Problem kod traženja polaznika '}});
+  }
+
+  async function postaviSliku(sifra, slika) {
+    return await HttpService.put('/Polaznik/postaviSliku/' + sifra, slika)
+    .then((odgovor)=>{return  {greska: false, poruka: odgovor.data};})
+    .catch((e)=>{ return {greska: true, poruka: 'Problem kod postavljanja slike polaznika '}});
+  }
+
+  async function ukupnoPolaznika(){
+    return await HttpService.get('/Pocetna/UkupnoPolaznika')
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return odgovor.data;
+    })
+    .catch((e)=>{console.error(e)})
+}
+
+
 export default{
     get,
     getBySifra,
@@ -85,5 +110,9 @@ export default{
     dodaj,
     promjena,
 
-    traziPolaznik
+    traziPolaznik,
+    getStranicenje,
+    postaviSliku,
+
+    ukupnoPolaznika
 }

@@ -7,25 +7,33 @@ import { useNavigate } from "react-router-dom";
 
 import Service from "../../services/GrupaService"; // primjetite promjenu naziva
 import { RouteNames } from "../../constants";
+import useLoading from "../../hooks/useLoading";
+import useError from '../../hooks/useError';
 
 export default function GrupePregled(){
     const [grupe,setGrupe] = useState();
     let navigate = useNavigate(); 
+    const { showLoading, hideLoading } = useLoading();
+    const { prikaziError } = useError();
 
     async function dohvatiGrupe(){
+        showLoading();
         await Service.get()
         .then((odgovor)=>{
             //console.log(odgovor);
             setGrupe(odgovor);
         })
         .catch((e)=>{console.log(e)});
+        hideLoading();
     }
 
     async function obrisiGrupu(sifra) {
+        showLoading();
         const odgovor = await Service.obrisi(sifra);
+        hideLoading();
         //console.log(odgovor);
         if(odgovor.greska){
-            alert(odgovor.poruka);
+            prikaziError(odgovor.poruka);
             return;
         }
         dohvatiGrupe();

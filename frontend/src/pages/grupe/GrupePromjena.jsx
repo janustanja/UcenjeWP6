@@ -7,11 +7,15 @@ import SmjerService from '../../services/SmjerService';
 import PolaznikService from '../../services/PolaznikService';
 import { RouteNames } from '../../constants';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import useLoading from "../../hooks/useLoading";
+import useError from '../../hooks/useError';
 
 
 export default function GrupePromjena() {
   const navigate = useNavigate();
+  const { showLoading, hideLoading } = useLoading();
   const routeParams = useParams();
+  const { prikaziError } = useError();
 
   const [smjerovi, setSmjerovi] = useState([]);
   const [smjerSifra, setSmjerSifra] = useState(0);
@@ -30,7 +34,7 @@ export default function GrupePromjena() {
   async function dohvatiGrupa() {
     const odgovor = await Service.getBySifra(routeParams.sifra);
     if(odgovor.greska){
-      alert(odgovor.poruka);
+      prikaziError(odgovor.poruka);
       return;
   }
     let grupa = odgovor.poruka;
@@ -41,7 +45,7 @@ export default function GrupePromjena() {
   async function dohvatiPolaznici() {
     const odgovor = await Service.getPolaznici(routeParams.sifra);
     if(odgovor.greska){
-      alert(odgovor.poruka);
+      prikaziError(odgovor.poruka);
       return;
     }
     setPolaznici(odgovor.poruka);
@@ -50,16 +54,18 @@ export default function GrupePromjena() {
   async function traziPolaznik(uvjet) {
     const odgovor =  await PolaznikService.traziPolaznik(uvjet);
     if(odgovor.greska){
-      alert(odgovor.poruka);
+      prikaziError(odgovor.poruka);
       return;
     }
     setPronadeniPolaznici(odgovor.poruka);
   }
 
   async function dodajPolaznika(e) {
+    showLoading();
     const odgovor = await Service.dodajPolaznika(routeParams.sifra, e[0].sifra);
+    hideLoading();
     if(odgovor.greska){
-      alert(odgovor.poruka);
+      prikaziError(odgovor.poruka);
       return;
     }
       await dohvatiPolaznici();
@@ -67,9 +73,11 @@ export default function GrupePromjena() {
   }
 
   async function obrisiPolaznika(polaznik) {
+    showLoading();
     const odgovor = await Service.obrisiPolaznika(routeParams.sifra, polaznik);
+    hideLoading();
     if(odgovor.greska){
-      alert(odgovor.poruka);
+      prikaziError(odgovor.poruka);
       return;
     }
       await dohvatiPolaznici();
@@ -77,9 +85,11 @@ export default function GrupePromjena() {
 
 
   async function dohvatiInicijalnePodatke() {
+    showLoading();
     await dohvatiSmjerove();
     await dohvatiGrupa();
     await dohvatiPolaznici();
+    hideLoading();
   }
 
 
@@ -89,9 +99,11 @@ export default function GrupePromjena() {
   },[]);
 
   async function promjena(e){
+    showLoading();
     const odgovor = await Service.promjena(routeParams.sifra,e);
+    hideLoading();
     if(odgovor.greska){
-        alert(odgovor.poruka);
+        prikaziError(odgovor.poruka);
         return;
     }
     navigate(RouteNames.GRUPA_PREGLED);

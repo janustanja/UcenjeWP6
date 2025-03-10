@@ -3,18 +3,22 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
+import useLoading from "../../hooks/useLoading";
+import useError from '../../hooks/useError';
 
 
 export default function SmjeroviDodaj(){
 
     const navigate = useNavigate()
+    const { showLoading, hideLoading } = useLoading();
+    const { prikaziError } = useError();
 
     async function dodaj(smjer) {
-        //console.log(smjer)
-        //console.log(JSON.stringify(smjer))
+        showLoading();
         const odgovor = await SmjerService.dodaj(smjer)
+        hideLoading();
         if(odgovor.greska){
-            alert(odgovor.poruka)
+            prikaziError(odgovor.poruka)
             return;
         }
         navigate(RouteNames.SMJER_PREGLED)
@@ -26,7 +30,7 @@ export default function SmjeroviDodaj(){
         //console.log(podaci.get('naziv'))
         dodaj({
             naziv: podaci.get('naziv'),
-            cijenaSmjera: parseFloat(podaci.get('cijena')),
+            cijena: parseFloat(podaci.get('cijena')),
             izvodiSeOd: moment.utc(podaci.get('izvodiSeOd')),
             vaucer: podaci.get('vaucer')=='on' ? true : false 
         })
@@ -41,7 +45,6 @@ export default function SmjeroviDodaj(){
                 <Form.Label>Naziv</Form.Label>
                 <Form.Control type="text" name="naziv" required />
             </Form.Group>
-
 
             <Form.Group controlId="cijena">
                 <Form.Label>Cijena</Form.Label>

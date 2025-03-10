@@ -12,7 +12,11 @@ export const RouteNames = {
 
     GRUPA_PREGLED: '/grupe',
     GRUPA_NOVI: '/grupe/dodaj',
-    GRUPA_PROMJENA: '/grupe/:sifra'
+    GRUPA_PROMJENA: '/grupe/:sifra',
+
+    LOGIN: '/login',
+    NADZORNA_PLOCA: '/nadzornaploca',
+    ERA: '/era'
 }
 
 export const PRODUKCIJA = 'https://tjakopec-001-site2.ntempurl.com'

@@ -6,18 +6,24 @@ import moment from "moment";
 import { GrValidate } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
+import useLoading from "../../hooks/useLoading";
+import useError from '../../hooks/useError';
 
 
 export default function SmjeroviPregled(){
 
     const navigate = useNavigate()
+    const { showLoading, hideLoading } = useLoading();
+    const { prikaziError } = useError();
 
     const[smjerovi, setSmjerovi] = useState();
 
     async function dohvatiSmjerove(){
+        showLoading();
         const odgovor = await SmjerService.get();
+        hideLoading();
         if(odgovor.greska){
-            alert(odgovor.poruka)
+            prikaziError(odgovor.poruka)
             return
         }
         //debugger; // ovo radi u Chrome inspect (ali i ostali preglednici)
@@ -50,10 +56,11 @@ export default function SmjeroviPregled(){
     }
 
     async function brisanjeSmjera(sifra) {
-        
+        showLoading();
         const odgovor = await SmjerService.brisanje(sifra);
+        hideLoading();
         if(odgovor.greska){
-            alert(odgovor.poruka)
+            prikaziError(odgovor.poruka)
             return
         }
         dohvatiSmjerove();
@@ -80,11 +87,11 @@ export default function SmjeroviPregled(){
                         <td>
                             {smjer.naziv}
                         </td>
-                        <td className={smjer.cijenaSmjera==null ? 'sredina' : 'desno'}>
+                        <td className={smjer.cijena==null ? 'sredina' : 'desno'}>
 
-                             {smjer.cijenaSmjera==null ? 'Nije definirano' : 
+                             {smjer.cijena==null ? 'Nije definirano' : 
                              <NumericFormat 
-                             value={smjer.cijenaSmjera}
+                             value={smjer.cijena}
                              displayType={'text'}
                              thousandSeparator='.'
                              decimalSeparator=','

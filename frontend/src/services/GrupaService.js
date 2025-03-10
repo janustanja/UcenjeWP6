@@ -41,7 +41,7 @@ async function dodaj(Grupa) {
             case 400:
                 let poruke='';
                 for(const kljuc in e.response.data.errors){
-                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + '\n';
+                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + ', ';
                 }
                 return {greska: true, poruka: poruke}
             default:
@@ -60,7 +60,7 @@ async function promjena(sifra,Grupa) {
             case 400:
                 let poruke='';
                 for(const kljuc in e.response.data.errors){
-                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + '\n';
+                    poruke += kljuc + ': ' + e.response.data.errors[kljuc][0] + ', ';
                 }
                 console.log(poruke)
                 return {greska: true, poruka: poruke}
@@ -100,6 +100,15 @@ async function obrisiPolaznika(grupa,polaznik) {
     })
 }
 
+async function grafGrupe(){
+    return await HttpService.get('/Grupa/GrafGrupe')
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return odgovor.data;
+    })
+    .catch((e)=>{console.error(e)})
+}
+
 export default{
     get,
     getBySifra,
@@ -109,5 +118,7 @@ export default{
 
     getPolaznici,
     dodajPolaznika,
-    obrisiPolaznika
+    obrisiPolaznika,
+
+    grafGrupe
 }
